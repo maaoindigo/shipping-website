@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="fish">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<link rel="icon" type="image/ico" href=""/>
+	<style type="text/css">
+		.nodegraph-node{
+			z-index: 10;
+			fill: #f4f40f;
+		}
+		.nodegraph-node:hover{
+			cursor: move;
+		}
+		.nodegraph-edge{
+			stroke:  #f0a2a2;
+			z-index: 9;
+		}
+		image{
+			background-repeat: no-repeat;
+		}
+	</style>
+
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!--FONTAWESOME-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- JSQUERY -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+	<title>Index</title>
+</head>
+<body>
+	<div class="mainContainer container-fluid">
+		<div class="row">
+			<div class="col-6">
+				<button class="makeNode btn btn-dark m-3">Make Node</button>
+			</div>
+			<div class="col-6">
+				
+				<svg class="ngcont" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="border: thin solid red">
+					<polyline class="testCurve" points="" style="fill:none;stroke:purple;stroke-width:3" />
+				</svg>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript" src="js/bundle.js"></script>
+	<script type="text/javascript">
+
+		// class ObjectObserver{
+		// 	static observers = [];
+
+		// 	constructor(){
+
+		// 	}
+		// }
+
+		// let box1 = $('.bbox')[0];
+
+		// console.log(nodesGraph);
+		// console.log(CollisionObserver);
+		
+
+		// console.log(box1);
+		// console.log(box1.getBoundingClientRect());
+
+		// let elemMap = {
+		// 	// elem or elem id:{
+		// 	// 	t:elem.clientTop,
+		// 	// 	l:elem.clientLeft,
+		// 	// 	r:elem.clientRight,
+		// 	// 	b:elem.clientBottom,
+		// 	// }
+		// }
+
+		// function isColliding(rectA, rectB){
+		// 	if(
+		// 		rectA.right < rectB.left ||
+		// 		rectA.left > rectB.right ||
+		// 		rectA.bottom < rectB.top ||
+		// 		rectA.top > rectB.bottom
+		// 	)
+		// 		return false;
+		// 	return true;
+		// }
+
+		// function collissionManager(elem){
+		// 	let rect = elem.getBoundingClientRect();
+
+
+		// }
+
+
+		// let b1 = box1.getBoundingClientRect();
+		// let b2 = box1.getBoundingClientRect();
+
+		// let o1 = {
+		// 	t: b1.top, l: b1.left, r:b1.right, b:b1.bottom
+		// }
+
+		// let o2 = {
+		// 	t: b2.top, l: b2.left, r:b2.right, b:b2.bottom
+		// }
+
+		// console.log(b1 == b2);
+		// console.log(o1 == o2);
+
+		// console.log(shallowEqual(b1,b2));
+		// console.log(shallowEqual(o1,o2));
+
+		// function Observer(o, property){
+		//     var _this = this;
+		//     var value = o[property];
+		//     this.observers = [];
+		    
+		//     this.Observe = function (notifyCallback){
+		//         _this.observers.push(notifyCallback);
+		//     }
+
+		//     Object.defineProperty(o, property, {
+		//         set: function(val){
+		//             _this.value = val;
+		//             for(var i = 0; i < _this.observers.length; i++) _this.observers[i](val);
+		//         },
+		//         get: function(){
+		//             return _this.value;
+		//         }
+		//     });
+		// }
+
+
+
+		// let mutationObserver = new MutationObserver((ents)=>{
+		// 	ents.forEach((ent)=>{
+		// 		console.log(ent);
+		// 	});
+		// });
+
+		// mutationObserver.observe(box1,{
+		// 	attributes: true, childList: true, subtree: true
+		// });
+
+		// let _events = [
+		// 	'DOMContentLoaded', 'beforematch', 'animationstart','animationiteration','animationend',
+		// 	'transitionstart','transitionend','transitionrun', 'resize', 
+		// ];
+
+		// _events.forEach((_event)=>{
+		// 	$(box1).on(_event,(e)=>{
+		// 		console.log(e.currentTarget?.getBoundingClientRect());
+		// 	});
+		// });
+
+		// let intersectionObserver = new IntersectionObserver((ents)=>{
+		// 	ents.forEach((ent)=>{
+		// 		console.log(ent);
+		// 	});
+		// },{
+		// 	root: $('body')[0],
+		// 	rootMargin: '0px',
+		// 	threshold: 1.0
+		// });
+
+		// intersectionObserver.observe(box1);
+
+		// let qPts = Vector2.quadraticBezierPoints([
+		// 	new Vector2(0,300),
+		// 	new Vector2(50,200),
+		// 	new Vector2(100,300),
+		// 	new Vector2(150,400),
+		// 	new Vector2(200,300),
+		// 	new Vector2(250,200),
+		// 	new Vector2(300,300),
+		// 	new Vector2(350,400),
+		// 	new Vector2(400,300),
+
+		// ], 0.1);
+		// let qP = qPts.map((qPt)=>{
+		// 	return `${qPt.x},${qPt.y}`;
+		// });
+
+		// $('.testCurve').attr({
+		// 	points: `${qP.join(' ')}`,
+		// });
+
+		// SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(toElement){
+		// 	return toElement.getScreenCTM().inverse().multiply(this.getScreenCTM());
+		// };
+
+		// let path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+
+		// let circ={
+		// 	c:{x:100,y:300},
+		// 	r:80,
+		// }
+
+		// $(path).attr({
+		// 	d:`
+		// 		M 100,100
+		// 		L 200,200
+		// 		Z
+		// 	`,
+		// 	stroke: `purple`,
+		// 	[`stroke-width`]: 3,
+		// 	fill: `none`,
+		// }).appendTo('svg');
+
+		// console.log(path);
+
+		// M cx cy
+  //   m -r, 0
+  //   a r,r 0 1,0 (r * 2),0
+  //   a r,r 0 1,0 -(r * 2),0
+
+		// return;
+
+		// var opts = {
+		// 	isDown: false,
+		// 	mousePos:{x:0,y:0},
+		// 	elemPos:{x:0,y:0}
+		// };
+
+		// let graph = {
+		// 	container: $(`.nodeContainer`)[0],
+		// 	nodeElems: $(`.node`).toArray(),
+		// 	edgeElems: $(`.edge`).toArray(),
+		// 	nodes:[], edges:[],
+		// 	getNodeByName:function(str){
+		// 		for(let node of this.nodes){
+		// 			if(node.name == str) return node;
+		// 		}
+		// 		return null;
+		// 	},
+		// 	getNodeByElem:function(elem){
+		// 		for(let node of this.nodes){
+		// 			if(node.elem == elem) return node;
+		// 		}
+		// 		return null;
+		// 	},
+		// 	getEdgeByName:function(str){
+		// 		for(let edge of this.edges){
+		// 			if(edge.name == str) return edge;
+		// 		}
+		// 		return null;
+		// 	},
+		// 	getEdgeByElem:function(elem){
+		// 		for(let edge of this.edges){
+		// 			if(edge.elem == elem) return edge;
+		// 		}
+		// 		return null;
+		// 	},
+		// 	createNode:function(str){
+
+		// 	},
+		// 	connectNodes:function(strA, strB){
+
+		// 	}
+		// }
+
+
+
+
+		// console.log(graph);
+
+		// graph.nodeElems.forEach((elem, i)=>{
+		// 	let node = {
+		// 		elem: elem
+		// 	}
+		// 	let _id = $(elem).attr('id');
+		// 	_id = _id.replace('node-', '');
+		// 	node.name = _id;
+
+		// 	node.elemPattern = $(`#nodePtn-${node.name}`)[0] || null;
+		// 	node.elemImage = $(`#nodeImg-${node.name}`)[0] || null;
+
+		// 	graph.nodes.push(node);
+		// });
+		// graph.edgeElems.forEach((elem, i)=>{
+		// 	let edge = {
+		// 		elem: elem
+		// 	}
+		// 	let _id = $(elem).attr('id');
+		// 	_id = _id.replace('edge-', '');
+		// 	edge.name = _id;
+
+		// 	let pts = edge.name.split('--');
+
+		// 	edge.points = [
+		// 		graph.getNodeByName(pts[0]), graph.getNodeByName(pts[1])
+		// 	];
+
+		// 	graph.edges.push(edge);
+		// });
+		
+		// graph.nodes.forEach((node,i)=>{
+		// 	node.edges = [];
+		// 	for(let edge of graph.edges){
+		// 		if(edge.points[0] == node || edge.points[1] == node)
+		// 			node.edges.push(edge);
+		// 	}
+
+		// 	node.updateElement = function(){
+		// 		node.updateEdges();
+		// 		node.updateImage();
+		// 	}
+		// 	node.updateEdges = ()=>{
+		// 		let nodeElem = node.elem;
+		// 		if(!nodeElem) return;
+				
+		// 		//update edges
+		// 		node.edges.forEach((edge)=>{
+		// 			let edgeElem = edge.elem;
+		// 			if(!edgeElem) return;
+
+		// 			let points = edgeElem.points;
+		// 			let svgPoint;
+
+		// 			if(node == edge.points[0]){
+		// 				svgPoint = points[0];
+		// 			}else if(node == edge.points[1]){
+		// 				svgPoint = points[1];
+		// 			}
+
+		// 			if(svgPoint){
+		// 				let centre = {
+		// 					x: nodeElem.cx.animVal.value,
+		// 					y: nodeElem.cy.animVal.value,
+		// 				}
+
+		// 				svgPoint.x = centre.x;
+		// 				svgPoint.y = centre.y;
+		// 			}
+					
+		// 		});
+		// 	}
+
+		// 	node.updateImage = ()=>{
+		// 		let nodeElem = node.elem;
+		// 		if(!nodeElem) return;
+				
+		// 		//update image and pattern
+		// 		let _ptn = node.elemPattern;
+		// 		let _img = node.elemImage;
+
+		// 		if(_ptn && _img){
+		// 			//update pattern
+		// 			let svg = graph.container;
+		// 			// console.log($(svg));
+		// 			let vBox = svg.viewBox.animVal;
+		// 			$(_ptn).attr({
+		// 				'width' : vBox.width,
+		// 				'height': vBox.height
+		// 			});
+		// 			// update image
+		// 			let _x = nodeElem.cx.animVal.value - nodeElem.rx.animVal.value;
+		// 			let _w = 2 * nodeElem.rx.animVal.value;
+		// 			let _y = nodeElem.cy.animVal.value - nodeElem.ry.animVal.value;
+		// 			let _h = 2 * nodeElem.ry.animVal.value;
+		// 			$(_img).attr({
+		// 				'x' : _x, 'y' : _y, 'width' : _w, 'height' : _h
+		// 			});
+		// 		}
+		// 	}
+		// 	node.updateElement();
+		// });
+
+		// let resizeObs = new ResizeObserver((ents)=>{
+		// 	ents.forEach((ent)=>{
+		// 		graph.nodes.forEach((node)=>{
+		// 			node.updateElement();
+		// 		})
+		// 	});
+		// });
+
+		// resizeObs.observe($('.mainContainer')[0]);
+		
+		// // Make the svg element draggable:
+		// $(`.node`).on('mousedown', function(e){
+		// 	e = e || window.event;
+		// 	e.preventDefault();
+		// 	let elem = e.currentTarget;
+
+		// 	var svg = $(elem).parents('svg')[0];
+		// 	var svgNS = svg.getAttribute('xmlns');
+		// 	var pt = svg.createSVGPoint();
+
+		// 	function cursorPoint(evt){
+		// 		pt.x = evt.clientX; pt.y = evt.clientY;
+		// 		return pt.matrixTransform(svg.getScreenCTM().inverse());
+		// 	}
+
+		// 	var mouseStart;
+		// 	var elementStart;
+
+		// 	opts.mousePos = cursorPoint(e);
+
+		// 	opts.elemPos = {
+		// 		x:elem.cx.animVal.value, y:elem.cy.animVal.value
+		// 	};
+
+		// 	svg.onmouseup = (e)=>{
+		// 		svg.onmouseup = null;
+		// 		svg.onmousemove = null;
+
+		// 		opts.isDown = false;
+		// 	};
+		// 	// call a function whenever the cursor moves:
+		// 	svg.onmousemove = (e)=>{
+		// 		e = e || window.event;
+		// 		e.preventDefault();
+
+		// 		let curr = cursorPoint(e);
+		// 		pt.x = curr.x - opts.mousePos.x;
+		// 		pt.y = curr.y - opts.mousePos.y;
+
+		// 		let m = elem.getTransformToElement(svg).inverse();
+		// 		// m.e = m.f = 0;
+		// 		pt = pt.matrixTransform(m);
+
+		// 		elem.setAttribute('cx', `${opts.elemPos.x + pt.x}`);
+		// 		elem.setAttribute('cy', `${opts.elemPos.y + pt.y}`);
+
+		// 		graph.getNodeByElem(elem)?.updateElement();
+		// 	};
+		// });
+
+	
+	</script>
+</body>
+</html>
